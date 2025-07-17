@@ -39,12 +39,7 @@ export default function handler(req: NextRequest) {
           flexDirection: 'column',
           padding: '80px',
           justifyContent: 'space-between',
-          background: `
-            linear-gradient(135deg, #667eea 0%, #764ba2 100%),
-            radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-            radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-            radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%)
-          `,
+          background: 'linear-gradient(135deg, #3b82f6, #1e3a8a)',
           color: 'white',
           fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
           position: 'relative',
@@ -93,8 +88,6 @@ export default function handler(req: NextRequest) {
                 borderRadius: 20,
                 background: 'rgba(255, 255, 255, 0.95)',
                 padding: 12,
-                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-                backdropFilter: 'blur(10px)',
                 border: '1px solid rgba(255, 255, 255, 0.2)'
               }}
             >
@@ -164,8 +157,6 @@ export default function handler(req: NextRequest) {
                   alignItems: 'center',
                   background: 'rgba(255, 255, 255, 0.95)',
                   color: '#1f2937',
-                  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)',
-                  backdropFilter: 'blur(10px)',
                   position: 'relative'
                 }}
               >
