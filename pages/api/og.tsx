@@ -166,7 +166,6 @@ export default function handler(req: NextRequest) {
                   color: '#1f2937',
                   boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)',
                   backdropFilter: 'blur(10px)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
                   position: 'relative'
                 }}
               >
