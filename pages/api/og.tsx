@@ -1,71 +1,42 @@
 import { ImageResponse } from '@vercel/og'
 import { NextRequest } from 'next/server'
 
-export const config = { runtime: 'edge' }
+export const config = {
+  runtime: 'edge',
+}
 
 export default function handler(req: NextRequest) {
   const { searchParams } = new URL(req.url)
 
   const title = searchParams.get('title') || 'AI SEO Audit'
-  const logo = searchParams.get('logo')
-  const technical = searchParams.get('technical') || '0'
-  const ai = searchParams.get('ai') || '0'
-  const keywords = searchParams.get('keywords') || '0'
+  const logo = searchParams.get('logo') || 'https://rankfirst.so/logo.png'
+  const score1 = searchParams.get('technical') || '92'
+  const score2 = searchParams.get('ai') || '100'
+  const score3 = searchParams.get('keywords') || '29'
 
   return new ImageResponse(
     (
       <div
         style={{
-          width: 1200,
-          height: 630,
-          backgroundColor: '#1E3A8A',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: 40,
-          color: 'white',
-          fontFamily: 'Arial, sans-serif',
-          gap: 40,
+          width: '100%',
+          height: '100%',
+          padding: '60px',
+          background: '#0f172a',
+          color: '#fff',
+          fontFamily: 'Inter, sans-serif',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
-          {logo && (
-            <img
-              src={logo}
-              alt="Logo"
-              width={72}
-              height={72}
-              style={{ backgroundColor: '#fff', borderRadius: 12 }}
-            />
-          )}
-          <h1 style={{ fontSize: 48, margin: 0 }}>{title}</h1>
+        <div style={{ display: 'flex', alignItems: 'center', marginBottom: 40 }}>
+          <img src={logo} width="80" height="80" style={{ borderRadius: 12, marginRight: 24 }} />
+          <h1 style={{ fontSize: 48, fontWeight: 700, lineHeight: 1.2 }}>{title}</h1>
         </div>
 
         <div style={{ display: 'flex', gap: 40 }}>
-          {[['Technical SEO', technical], ['AI Visibility', ai], ['Top Keywords', keywords]].map(
-            ([label, value]) => (
-              <div
-                key={label}
-                style={{
-                  width: 180,
-                  height: 180,
-                  borderRadius: '50%',
-                  backgroundColor: '#fff',
-                  color: '#111',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  fontWeight: 'bold',
-                  fontSize: 24,
-                }}
-              >
-                <div style={{ fontSize: 32 }}>{value}%</div>
-                <div style={{ fontSize: 16, marginTop: 8 }}>{label}</div>
-              </div>
-            )
-          )}
+          <Score label="Technical SEO" score={score1} />
+          <Score label="OpenAI Visibility" score={score2} />
+          <Score label="Top Keywords" score={score3} />
         </div>
       </div>
     ),
@@ -73,5 +44,28 @@ export default function handler(req: NextRequest) {
       width: 1200,
       height: 630,
     }
+  )
+}
+
+function Score({ label, score }: { label: string; score: string }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div
+        style={{
+          width: 160,
+          height: 160,
+          borderRadius: '50%',
+          border: '12px solid #10b981',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: 48,
+          fontWeight: 'bold',
+        }}
+      >
+        {score}
+      </div>
+      <p style={{ marginTop: 16, fontSize: 28 }}>{label}</p>
+    </div>
   )
 }
